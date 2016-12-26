@@ -173,7 +173,7 @@ case $DiStR0 in
     Debian) IP=`ifconfig $InT3R | egrep -w "inet" | awk '{print $2}'`;;
     Ubuntu) IP=`ifconfig $InT3R | egrep -w "inet" | awk {'print $2'} | cut -d ':' -f2`;;
     Parrot) IP=`ifconfig $InT3R | egrep -w "inet" | cut -d ':' -f2 | cut -d 'B' -f1`;;
-    BackBox) IP=`ifconfig $InT3R | egrep -w "inet" | cut -d ':' -f2 | cut -d 'B' -f1`;;
+    BackBox) IP=`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | cut -d ':' -f2`;;
     elementary) IP=`ifconfig $InT3R | egrep -w "inet" | cut -d ':' -f2 | cut -d 'B' -f1`;;
     *) IP=`zenity --title="☠ Input your IP addr ☠" --text "example: 192.168.1.68" --entry --width 270`;;
 esac
